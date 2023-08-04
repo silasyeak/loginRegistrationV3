@@ -24,11 +24,16 @@ body {
   align-items: center;
 }
 
+.navbar img{
+  height: 100px;
+  width:auto;
+}
+
 .navbar h1 {
   display: inline-block;
   color: black;
   font-family: sans-serif;
-  font-weight: 200;
+  font-weight: 100;
 }
 
 .navbar a {
@@ -67,7 +72,7 @@ body {
 .alert {
   padding: 10px;
   margin: 10px 0;
-  border-radius: 3px;
+  border-radius: 8px;
   text-align: center;
 }
 
@@ -92,7 +97,7 @@ body {
 .login-form__input {
   border: 3px solid rgba(252, 252, 252, 0.664);
   background-color: rgba(252, 252, 252, 0);
-  border-radius: 3px;
+  border-radius: 8px;
   font-family: "Source Sans Pro", sans-serif;
   padding: 10px 15px;
   width: 100%;
@@ -110,7 +115,7 @@ body {
   border: 0;
   padding: 10px 15px;
   color: #50a3a2;
-  border-radius: 3px;
+  border-radius: 8px;
   width: 100%;
   font-size: 18px;
   cursor: pointer;
@@ -147,7 +152,7 @@ body {
 .card {
   flex-grow: 1;
   background: #fff;
-  border-radius: 7px;
+  border-radius: 8px;
   box-shadow: 0 2px 5px #ccc;
   padding: 30px;
   margin: 16px;
@@ -208,7 +213,8 @@ body {
 }
 
 .news__img {
-  height: 150px;
+  width: 500px;
+  height: 200px;
   margin-right: 12px;
 }
 
