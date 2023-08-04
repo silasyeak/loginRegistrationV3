@@ -1,6 +1,8 @@
 package com.silas.loginregistrationwebapp.service;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,7 +40,7 @@ public class UserService {
         if(role == null){
             role = addNewRole();
         }
-        user.setRoles("ROLE_ADMIN");
+        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
@@ -52,17 +54,36 @@ public class UserService {
         return roleRepository.save(role);
     }
 
+
     @Transactional
-    public void changeUserRole(Long userId, String newRole) {
+    public void changeUserRole(Long userId, String newRoleName) {
+        // Find or create the role based on the newRoleName
+        Role role = roleRepository.findByName(newRoleName);
+        if (role == null) {
+            role = new Role();
+            role.setName(newRoleName);
+            roleRepository.save(role);
+        }
+
+        // Find the user by user ID
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
 
-        // Validate the new role (You can add more sophisticated validation if needed)
-        if (!newRole.equalsIgnoreCase("ROLE_ADMIN") && !newRole.equalsIgnoreCase("ROLE_USER")) {
-            throw new IllegalArgumentException("Invalid role: " + newRole);
+        // Assign the role to the user
+        user.getRoles().add(role);
+
+        // Check if the new role is an admin role
+        if ("admin".equalsIgnoreCase(newRoleName)) {
+            // Perform any specific actions for admin privileges, if needed
         }
 
-        user.setRoles(newRole); // Assuming you have a "role" field in the User model
+        // Save the updated user back to the database
         userRepository.save(user);
+    }
+    
+    private Role addNewRole(String roleName) {
+        Role role = new Role();
+        role.setName(roleName);
+        return roleRepository.save(role);
     }
 }

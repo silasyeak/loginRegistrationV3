@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+//this worked
+//curl -X PUT http://localhost:8080/api/change-role/\1\?newRole\=admin 
+
 @RestController
 @RequestMapping("/api")
 public class RoleChangeController {
