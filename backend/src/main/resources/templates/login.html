@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration App</title>
+        <link th:href = "@{/css/main.css}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div>
+                <a th:href="@{/}"><h1>Registration App<h1></a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="container--inner">
+                <div>
+                    <h2>Login</h2>
+                </div>
+                <div th:if="${param.error}" class="alert alert--danger">Invalid Email or Password</div>
+                <div th:if="${param.logout}" class="alert alert--success"> You have been logged out.</div>
+                <div class="login-card">
+                    <form
+                        method="post"
+                        role="form"
+                        th:action="@{/login}"
+                        class="login-form"
+                    >
+                        <div class="login-form__item">
+                            <label> Email</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="login-form__input"
+                                placeholder="Enter email"
+                            />
+                        </div>
+
+                        <div class="login-form__item">
+                            <label> Password</label>
+                            <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="login-form__input"
+                                    placeholder="Enter password"
+                            />
+                        </div>
+                        <div class="login-form__item">
+                            <button type="submit" class="login-form__button" >Submit</button>
+                        </div>
+                        <div class="centered">
+                            <p> Not registered ?
+                                <a th:href="@{/register}">Sign up here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

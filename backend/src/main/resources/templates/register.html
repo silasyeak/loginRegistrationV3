@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration App</title>
+        <link th:href = "@{/css/main.css}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div>
+                <a th:href="@{/}"><h1>Registration App<h1></a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="container--inner">
+                <div>
+                    <h2>Register</h2>
+                </div>
+                <div th:if="${param.success}" class="alert alert--success">
+                    You have successfully registered our app!
+                </div>
+                <div class="login-card">
+                    <form
+                        method="post"
+                        role="form"
+                        th:action="@{/register/save}"
+                        th:object="${user}"
+                    >
+                        <div class="login-form__item">
+                            <label class="login-form__label">Name</label>
+                            <input
+                                    class="login-form__input"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Enter name"
+                                    th:field="*{name}"
+                                    type="text"
+                            />
+                            <p th:errors = "*{name}" class="text--danger"
+                            th:if="${#fields.hasErrors('name')}"></p>
+                        </div>
+
+                        <div class="login-form__item">
+                            <label class="login-form__label">Email</label>
+                            <input
+                                    class="login-form__input"
+                                    id="email"
+                                    name="email"
+                                    placeholder="Enter email address"
+                                    th:field="*{email}"
+                                    type="email"
+                            />
+                            <p th:errors = "*{email}" class="text--danger"
+                                th:if="${#fields.hasErrors('email')}"></p>
+                        </div>
+
+                        <div class="login-form__item">
+                            <label class="login-form__label">Phone Number (optional)</label>
+                            <input
+                                    class="login-form__input"
+                                    id="telephone"
+                                    name="telephone"
+                                    placeholder="Enter phone number"
+                                    th:field="*{telephone}"
+                                    type="tel"
+                            />
+                            <p th:errors = "*{telephone}" class="text--danger"
+                                th:if="${#fields.hasErrors('telephone')}"></p>
+                        </div>
+
+                        <div class="login-form__item">
+                            <label class="login-form__label">Password</label>
+                            <input
+                                    class="login-form__input"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter password"
+                                    th:field="*{password}"
+                                    type="password"
+                            />
+                            <p th:errors = "*{password}" class="text--danger"
+                                th:if="${#fields.hasErrors('password')}"></p>
+                        </div>
+
+                        <div class="login-form__item">
+                            <label class="login-form__label">Confirm Password</label>
+                            <input
+                                    class="login-form__input"
+                                    id="passwordConfirmation"
+                                    name="passwordConfirmation"
+                                    placeholder="Re-Enter password"
+                                    th:field="*{passwordConfirmation}"
+                                    type="password"
+                            />
+                            <p th:errors = "*{passwordConfirmation}" class="text--danger"
+                                th:if="${#fields.hasErrors('passwordConfirmation')}"></p>
+                            <p th:errors = "*{passwordsEqual}" th:if="${#fields.hasErrors('passwordsEqual')}" class="text--danger"></p>
+                        </div>
+                        <div class="login-form__item">
+                            <button class="login-form__button" type="submit">Register</button>
+                        </div>
+                        <div class="centered">
+                            <p>Already registered? <a th:href="@{/login}">Login here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

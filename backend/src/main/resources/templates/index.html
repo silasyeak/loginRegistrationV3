@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration App</title>
+        <link th:href = "@{/css/main.css}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <nav class="navbar">
+                <a th:href="@{/}"><h1>Registration App<h1></a>
+                <div class="">
+                    <ul class="nav-items">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
+        <div class="home__container">
+            <div>
+                <h1 class="text-center" th:text = "'Welcome ' + ${user.name} + '!'"></h1>
+            </div>
+            <div class="horizontal-flex">
+                <div class="card card--profile">
+                    <div class="profile__container">
+                        <h2 class="profile__header">Profile</h2>
+                        <img class="profile__img" src="/images/profile.png" alt="example profile photo">
+                        <h3 class="profile__header" th:text = "${user.name}"></h3>
+                        <p class="profile_info" th:text = "${user.email}"></p>
+                        <p class="profile_info" th:text = "${user.telephone}"></p>
+                    </div>
+                    <a class="nav-link" aria-current="page" th:href="@{/logout}">Logout</a>
+                </div>
+                <div class="card">
+                    <div class="news__item" th:each="i : ${#numbers.sequence(1, 6)}">
+                        <img class="news__img" th:src="'https://picsum.photos/250/150?random=' + ${ i }" alt="default news image">
+                        <div>
+                            <p class="ellipsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum sollicitudin sapien vitae feugiat. Praesent sodales, nunc et convallis varius, justo purus tincidunt purus, id efficitur est sem vitae nibh. Vivamus ut purus sodales, rhoncus nunc ut, auctor quam. Maecenas aliquam vitae libero nec suscipit. Pellentesque viverra scelerisque risus. Integer et mauris vitae magna porta pellentesque. Suspendisse et lacinia mi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
