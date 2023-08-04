@@ -38,7 +38,7 @@ public class UserService {
         if(role == null){
             role = addNewRole();
         }
-        user.setRoles(Arrays.asList(role));
+        user.setRoles("ROLE_ADMIN");
         userRepository.save(user);
     }
 

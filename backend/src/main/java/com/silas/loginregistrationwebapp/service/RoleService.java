@@ -25,11 +25,11 @@ public class RoleService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
 
-        Role adminRole = roleRepository.findByName("ADMIN");
+        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
 
         if (adminRole == null) {
             adminRole = new Role();
-            adminRole.setName("ADMIN");
+            adminRole.setName("ROLE_ADMIN");
             roleRepository.save(adminRole);
         }
 
@@ -42,11 +42,11 @@ public class RoleService {
         User admin = userRepository.findById(adminId)
                 .orElseThrow(() -> new IllegalArgumentException("Admin not found with ID: " + adminId));
 
-        Role userRole = roleRepository.findByName("USER");
+        Role userRole = roleRepository.findByName("ROLE_USER");
 
         if (userRole == null) {
             userRole = new Role();
-            userRole.setName("USER");
+            userRole.setName("ROLE_USER");
             roleRepository.save(userRole);
         }
 
