@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
-import com.silas.loginregistrationwebapp.model.Role;
 import com.silas.loginregistrationwebapp.model.User;
 import com.silas.loginregistrationwebapp.service.UserService;
 
@@ -25,16 +24,16 @@ public class MainController {
 
     public MainController(UserService userService) {
         this.userService = userService;
-    }
+    } 
 
     @GetMapping("/")
     public String home(Principal principal, Model model) {
         User user = userService.findUserByEmail(principal.getName());
         model.addAttribute("user", user);
 
-        // Fetch the user roles and add them to the model
-        Collection<Role> roles = user.getRoles();
-        model.addAttribute("roles", roles);
+        // Omitted Roles
+        //        String roles = user.getRole();
+        //        model.addAttribute("roles", roles);
 
         return "index";
     }

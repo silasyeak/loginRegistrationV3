@@ -1,8 +1,8 @@
 package com.silas.loginregistrationwebapp.service;
 
-import com.silas.loginregistrationwebapp.model.Role;
-import com.silas.loginregistrationwebapp.model.User;
-import com.silas.loginregistrationwebapp.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
+import com.silas.loginregistrationwebapp.model.User;
+import com.silas.loginregistrationwebapp.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -30,16 +30,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPassword(),
-                    mapRolesToAuthorities(user.getRoles()));
-        }else{
+                    mapRolesToAuthorities(user.getRole())); // Assuming getRole() returns a String representing the user's role
+        } else {
             throw new UsernameNotFoundException("Invalid username or password.Test");
         }
     }
 
-    private Collection < ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
-        Collection < ? extends GrantedAuthority> mapRoles = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-        return mapRoles;
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(String role) {
+        // Here, instead of handling a collection of roles, we handle a single String role
+        // You can customize this method as per your application's logic for role to authority mapping
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role));
+        return authorities;
     }
+
 }

@@ -40,13 +40,16 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = false)
+    private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
-    private Collection<Role> roles = new HashSet<>(); 
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "users_roles",
+//            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+//            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
+//    private Collection<Role> roles = new HashSet<>(); 
 
 	public Long getId() {
 		return id;
@@ -88,13 +91,15 @@ public class User {
 		this.password = password;
 	}
 
-	public Collection<Role> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
+
+	
     
     
 }
