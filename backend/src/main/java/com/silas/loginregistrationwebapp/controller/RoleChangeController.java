@@ -1,13 +1,17 @@
 package com.silas.loginregistrationwebapp.controller;
 
-import com.silas.loginregistrationwebapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-//this worked
-//curl -X PUT http://localhost:8080/api/change-role/\1\?newRole\=admin 
+import com.silas.loginregistrationwebapp.service.UserService;
 
 @RestController
 @RequestMapping("/api")
@@ -25,4 +29,12 @@ public class RoleChangeController {
         userService.changeUserRole(userId, newRole);
         return new ResponseEntity<>("User role changed successfully.", HttpStatus.OK);
     }
+    
+    // This route require basic auth, Only ADMIN can access
+    @GetMapping("/message")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String getMessage() {
+        return "Hey, Admin";
+    }
+
 }

@@ -1,12 +1,8 @@
 package com.silas.loginregistrationwebapp.controller;
 
-import jakarta.validation.Valid;
-
-import com.silas.loginregistrationwebapp.dto.UserDto;
-import com.silas.loginregistrationwebapp.model.User;
-import com.silas.loginregistrationwebapp.service.UserService;
-
 import java.security.Principal;
+import java.util.Collection;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.silas.loginregistrationwebapp.dto.UserDto;
+import com.silas.loginregistrationwebapp.model.Role;
+import com.silas.loginregistrationwebapp.model.User;
+import com.silas.loginregistrationwebapp.service.UserService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class MainController {
@@ -25,9 +28,14 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String home(Principal principal, Model model){
+    public String home(Principal principal, Model model) {
         User user = userService.findUserByEmail(principal.getName());
         model.addAttribute("user", user);
+
+        // Fetch the user roles and add them to the model
+        Collection<Role> roles = user.getRoles();
+        model.addAttribute("roles", roles);
+
         return "index";
     }
 
