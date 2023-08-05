@@ -14,17 +14,16 @@ Instructions:
 1. Created application.properties (in resources)
 2. Input this, and create a SQL database called loginRegistrationDXC
 3. Input your username and password for your MySQL database
+4. Import as Maven project into Eclipse/your editor,
+5. Run the file: RegistrationWebAppApplication.java
+
 
 spring.datasource.url=jdbc:mysql://localhost:3306/loginRegistrationDXC
 spring.datasource.username=
 spring.datasource.password=
 
-# Hibernate properties
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
 logging.level.org.hibernate.SQL=DEBUG
 logging.level.org.hibernate.type=TRACE
-
-Import as Maven project into Eclipse/your editor,
-run the file: RegistrationWebAppApplication.java
