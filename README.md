@@ -9,3 +9,22 @@ User Login: Registered users can log in using their credentials to access the ap
 MySQL Database: Stores user information in a reliable and scalable MySQL database. 
 Thymeleaf and Bootstrap: Employs Thymeleaf and Bootstrap to create dynamic and user-friendly web pages.
 Spring Boot Security: Ensures that user authentication and authorization are handled efficiently and securely. With this application, users can seamlessly register, login, and access the provided services, all while ensuring their information and actions are protected by modern security standards.
+
+Instructions:
+1. Created application.properties (in resources)
+2. Input this, and create a SQL database called loginRegistrationDXC
+3. Input your username and password for your MySQL database
+
+spring.datasource.url=jdbc:mysql://localhost:3306/loginRegistrationDXC
+spring.datasource.username=
+spring.datasource.password=
+
+# Hibernate properties
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type=TRACE
+
+Import as Maven project into Eclipse/your editor,
+run the file: RegistrationWebAppApplication.java
