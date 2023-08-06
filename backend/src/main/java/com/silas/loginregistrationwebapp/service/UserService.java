@@ -1,5 +1,6 @@
 package com.silas.loginregistrationwebapp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +28,7 @@ public class UserService {
         user.setTelephone(userDto.getTelephone());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setRole("USER");
+        user.setRole("User");
         userRepository.save(user);
     }
 
@@ -44,5 +45,9 @@ public class UserService {
             userRepository.save(user);
         }
     }
+    
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 
 }

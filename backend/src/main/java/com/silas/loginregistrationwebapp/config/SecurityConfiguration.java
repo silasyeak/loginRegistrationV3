@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/images/**").authenticated()
                                 .requestMatchers("/").authenticated()
+                                .requestMatchers("/manager").authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

@@ -1,8 +1,7 @@
 package com.silas.loginregistrationwebapp.controller;
 
 import java.security.Principal;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,4 +68,29 @@ public class MainController {
     public String login(){
         return "login";
     }
+    
+    @GetMapping("/manager")
+    public String managerPage(Principal principal, Model model) {
+        User user = userService.findUserByEmail(principal.getName());
+
+        // Check if the user is a manager (assuming role is a String property in User)
+        if (user.getRole().equalsIgnoreCase("Manager")) {
+            model.addAttribute("user", user);
+            model.addAttribute("role", user);
+//            // Add any additional data you want to show on the manager page
+            return "manager";
+        } else {
+            // If the user is not a manager, you can redirect them to another page or show an error message
+            return "redirect:/";
+        }
+    }
+    
+    @GetMapping("/users")
+    public String displayUsers(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users"; // This will return the "users.html" template.
+    }
+
+
 }
