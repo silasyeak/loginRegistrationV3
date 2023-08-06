@@ -69,4 +69,21 @@ public class MainController {
     public String login(){
         return "login";
     }
+    
+    @GetMapping("/manager")
+    public String managerPage(Principal principal, Model model) {
+        User user = userService.findUserByEmail(principal.getName());
+
+        // Check if the user is a manager (assuming role is a String property in User)
+        if (user.getRole().equalsIgnoreCase("Manager")) {
+            model.addAttribute("user", user);
+            // Add any additional data you want to show on the manager page
+            return "manager";
+        } else {
+            // If the user is not a manager, you can redirect them to another page or show an error message
+            return "redirect:/";
+        }
+    }
+
+
 }
