@@ -21,39 +21,28 @@
         </nav>
         <div class="home__container">
             <div>
-                <h1 class="text-center" th:text="'Welcome ' + ${#strings.capitalize(user.name)} + '!'"></h1>
+                <h1 class="text-center" th:text="'Welcome ' + ${#strings.capitalize(user.name)} + ', congrats, you are a manager!'"></h1>
 
             </div>
-            <table class="table">
-                <thead>
+            <!-- <table class="table table-bordered">
+              <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Role</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+              </thead>
+              <tbody>
+                  <tr th:each="user : ${users}">
+                      <td th:text="${user.name}"></td>
+                      <td th:text="${user.email}"></td>
+                      <td th:text="${user.telephone}"></td>
+                      <td th:text="${user.role}"></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+              </tbody>
+          </table> -->
+          
             
             </div>
         </div>
