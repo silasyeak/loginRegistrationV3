@@ -47,9 +47,7 @@ public class MainController {
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
-                               BindingResult result,
-                               Model model){
+    public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model){
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
@@ -86,6 +84,33 @@ public class MainController {
             // If the user is not a manager, you can redirect them to another page or show an error message
             return "redirect:/";
         }
+    }
+    
+    
+    @GetMapping("/showNewUserForm")
+    public String showNewUserForm(Model model) {
+    	UserDto user = new UserDto();
+    	model.addAttribute("user", user);
+    	return "new_user";
+    }
+    
+    @PostMapping("/saveUser")
+    public String saveUser(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
+    	User existingUser = userService.findUserByEmail(userDto.getEmail());
+
+        if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
+            result.rejectValue("email", null,
+                    "There is already an account registered with this email");
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("user", userDto);
+            return "/register";
+        }
+
+        userService.saveUser(userDto);
+        return "redirect:/manager";
+    	
     }
 
 }

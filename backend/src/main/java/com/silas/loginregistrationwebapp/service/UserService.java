@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
 import com.silas.loginregistrationwebapp.model.User;
@@ -21,7 +22,8 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
+    
+    @PostMapping("/saveUser") //test this mapping, or maybe create a new one
     public void saveUser(UserDto userDto) {
         User user = new User();
         user.setName(userDto.getName());
