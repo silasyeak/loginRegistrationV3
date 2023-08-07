@@ -89,7 +89,7 @@ public class MainController {
     public String displayUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "users"; // This will return the "users.html" template.
+        return "manager"; // This will return the "manager.html" template.
     }
 
 
