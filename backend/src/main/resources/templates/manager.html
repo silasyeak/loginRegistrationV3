@@ -37,6 +37,7 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Role</th>
+          <th scope ="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +46,8 @@
           <td th:text="${user.email}"></td>
           <td th:text="${user.telephone}"></td>
           <td th:text="${user.role}"></td>
+          <td><a th:href="@{/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a></td>
+
         </tr>  
         
         </tr>

@@ -1,7 +1,6 @@
 package com.silas.loginregistrationwebapp.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
@@ -92,6 +92,13 @@ public class MainController {
     	UserDto user = new UserDto();
     	model.addAttribute("user", user);
     	return "new_user";
+    }
+    
+    @GetMapping("/showFormForUpdate/{id}")
+    public String showFormForUpdate(@PathVariable (value = "id") long id, Model model) {
+    	User user = userService.findUserById(id);
+    	model.addAttribute("user", user);
+    	return "update_user";
     }
     
     @PostMapping("/saveUser")

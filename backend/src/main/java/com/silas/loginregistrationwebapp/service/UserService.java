@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
+import com.silas.loginregistrationwebapp.dto.UserDtoNoExceptions;
 import com.silas.loginregistrationwebapp.model.User;
 import com.silas.loginregistrationwebapp.repository.UserRepository;
 
@@ -23,7 +24,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
     
-    @PostMapping("/saveUser") //test this mapping, or maybe create a new one
+    @PostMapping("/saveUser")
     public void saveUser(UserDto userDto) {
         User user = new User();
         user.setName(userDto.getName());
@@ -33,9 +34,32 @@ public class UserService {
         user.setRole("User");
         userRepository.save(user);
     }
+    
+    @PostMapping("/updateUser")
+    public String updateUser(UserDtoNoExceptions userDtoNE) {
+    	 User user = new User();
+         user.setName(userDtoNE.getName());
+         user.setTelephone(userDtoNE.getTelephone());
+         user.setEmail(userDtoNE.getEmail());
+         //user.setPassword(passwordEncoder.encode(userDtoNE.getPassword()));
+         user.setRole(userDtoNE.getRole());
+         userRepository.save(user);
+         return "redirect:/manager";
+    }
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+    
+    public User findUserById(long id) {
+    	Optional<User> optional = userRepository.findById(id);
+    	User user = null;
+    	if(optional.isPresent()) {
+    		user = optional.get();
+    	}else {
+    		throw new RuntimeException(" User not found for id :: " + id);
+    	}
+    	return user;
     }
 
     public void updateManager(Long id, String manager) {
