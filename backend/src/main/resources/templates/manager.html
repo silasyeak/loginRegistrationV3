@@ -14,7 +14,10 @@
   <nav class="navbar">
     <img src="./images/DXC.png" th:href="@{/}">
     <div class="">
-      <ul class="nav-items">
+      <ul class="nav-items" style="display:flex">
+        <li class="nav-item btn btn-info" style="margin-right: 5px; color:white">
+          <a class = "nav-link" aria-current="page" th:href= "@{/}">Back to main</a>
+        </li>
         <li class="nav-item btn btn-danger" style="margin-right: 20px;">
           <a class="nav-link" aria-current="page" th:href="@{/logout}">Logout</a>
         </li>
