@@ -37,12 +37,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr th:each = "user : ${user}">
-          <td th:text="${user.name}"></td>
+        <tr th:each = "user : ${listUsers}">
+          <td th:text="${user.name}"></td> 
           <td th:text="${user.email}"></td>
           <td th:text="${user.telephone}"></td>
           <td th:text="${user.role}"></td>
-        </tr>
+        </tr>  
         
         </tr>
       </tbody>

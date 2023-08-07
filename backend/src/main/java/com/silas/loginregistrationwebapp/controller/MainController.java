@@ -3,6 +3,7 @@ package com.silas.loginregistrationwebapp.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import jakarta.validation.Valid;
 @Controller
 public class MainController {
 
+	@Autowired
     private UserService userService;
 
     public MainController(UserService userService) {
@@ -77,6 +79,7 @@ public class MainController {
         if (user.getRole().equalsIgnoreCase("Manager")) {
             model.addAttribute("user", user);
             model.addAttribute("role", user);
+            model.addAttribute("listUsers", userService.getAllUsers());
 //            // Add any additional data you want to show on the manager page
             return "manager";
         } else {
@@ -84,13 +87,5 @@ public class MainController {
             return "redirect:/";
         }
     }
-    
-    @GetMapping("/users")
-    public String displayUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-        return "manager"; // This will return the "manager.html" template.
-    }
-
 
 }
