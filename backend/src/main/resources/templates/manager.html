@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US"
+    xmlns:th="http://www.thymeleaf.org"
+>
 
 <head>
   <meta charset="UTF-8">
   <title>Login Registration App</title>
   <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -28,7 +27,7 @@
         th:text="'Manager Dashboard'"></h2>
 
     </div>
-    <!-- <table class="table table-bordered" style = "border-radius: 15px;">
+    <table class="table table-bordered" style = "border-radius: 15px;">
       <thead>
         <tr>
           <th scope="col">Name</th>
@@ -38,75 +37,28 @@
         </tr>
       </thead>
       <tbody>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.telephone}"></td>
-        <td th:text="${user.role}"></td>
+        <tr th:each = "user : ${user}">
+          <td th:text="${user.name}"></td>
+          <td th:text="${user.email}"></td>
+          <td th:text="${user.telephone}"></td>
+          <td th:text="${user.role}"></td>
+        </tr>
+        
         </tr>
       </tbody>
-    </table> -->
-    <div style="display:flex;">
-      <canvas style="height: 400px;" id="chart1"></canvas>
-      
-      <div style="height: 400px;" id="chart2"></div>
-    </div>
+    </table>
+    <div id="google_translate_element"></div>
 
 
-  <script>
-    // Chart.js data and options
-    const chart1Data = {
-      labels: ['Mar', 'Apr', 'May', 'Jun', 'Jul'],
-      datasets: [{
-        label: 'Sales Data',
-        data: [50, 75, 60, 80, 120],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-      }]
-    };
 
-    const chart1Options = {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
       }
-    };
-
-    // Create Chart.js chart
-    const ctx1 = document.getElementById('chart1').getContext('2d');
-    new Chart(ctx1, {
-      type: 'bar',
-      data: chart1Data,
-      options: chart1Options
-    });
-
-    // Google Charts data and options
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart2);
-
-    function drawChart2() {
-      const chart2Data = google.visualization.arrayToDataTable([
-        ['Month', 'Expenses'],
-        ['Mar', 200],
-        ['Apr', 300],
-        ['May', 150],
-        ['Jun', 250],
-        ['Jul', 180]
-      ]);
-
-      const chart2Options = {
-        title: 'Monthly Expenses',
-        legend: { position: 'bottom' },
-        width: '100%',
-        height: '300px'
-      };
-
-      const chart2 = new google.visualization.LineChart(document.getElementById('chart2'));
-      chart2.draw(chart2Data, chart2Options);
-    }
-
-  </script>
+      </script>
+      
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
   
 </body>
 
