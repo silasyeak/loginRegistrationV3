@@ -12,7 +12,7 @@ Spring Boot Security: Ensures that user authentication and authorization are han
 
 Instructions:
 1. Created application.properties (in resources)
-2. Input this, and create a SQL database called loginRegistrationDXC
+2. Create a MySQL database called loginRegistrationDXC
 3. Input your username and password for your MySQL database
 4. Import as Maven project into Eclipse/your editor,
 5. Run the file: RegistrationWebAppApplication.java
