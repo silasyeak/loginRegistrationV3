@@ -14,7 +14,10 @@
   <nav class="navbar">
     <img src="./images/DXC.png" th:href="@{/}">
     <div class="">
-      <ul class="nav-items">
+      <ul class="nav-items" style="display:flex">
+        <li class="nav-item btn btn-info" style="margin-right: 5px; color:white">
+          <a class = "nav-link" aria-current="page" th:href= "@{/}">Back to main</a>
+        </li>
         <li class="nav-item btn btn-danger" style="margin-right: 20px;">
           <a class="nav-link" aria-current="page" th:href="@{/logout}">Logout</a>
         </li>
@@ -34,19 +37,23 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Role</th>
+          <th scope ="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr th:each = "user : ${user}">
-          <td th:text="${user.name}"></td>
+        <tr th:each = "user : ${listUsers}">
+          <td th:text="${user.name}"></td> 
           <td th:text="${user.email}"></td>
           <td th:text="${user.telephone}"></td>
           <td th:text="${user.role}"></td>
-        </tr>
+          <td><a th:href="@{/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a></td>
+
+        </tr>  
         
         </tr>
       </tbody>
     </table>
+    <a th:href = "@{/showNewUserForm}" class = "btn btn-primary btn-sm mb-3">Add user</a>
     <div id="google_translate_element"></div>
 
 

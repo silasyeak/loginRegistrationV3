@@ -34,6 +34,9 @@ public class SecurityConfiguration {
                                 .requestMatchers("/images/**").authenticated()
                                 .requestMatchers("/").authenticated()
                                 .requestMatchers("/manager").authenticated()
+                                .requestMatchers("/showNewUserForm").permitAll()
+                                .requestMatchers("/showFormForUpdate").permitAll()
+                                .anyRequest().authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
