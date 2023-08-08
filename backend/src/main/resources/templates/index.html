@@ -14,14 +14,14 @@
                 <img src="./images/DXC.png" th:href="@{/}">
                 <div class="">
                     <ul class="nav-items">
-                        <li class="nav-item btn btn-info" th:if="${user.role == 'Manager'}">
-                            <a style="text-decoration: none; color: white;" th:href="@{/manager}">
-                                Manager
+                        <li class="nav-item btn btn-light" th:if="${user.role == 'Manager'}">
+                            <a style="text-decoration: none; color: #582899;" th:href="@{/manager}">
+                                Manager Dashboard
                             </a>
                         </li>
                         
                         
-                        <li class="nav-item btn btn-danger" style="margin-right: 20px;">
+                        <li class="nav-item btn btn-light" style="margin-right: 20px; color: #582899;">
                             <a class="nav-link" aria-current="page" th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
