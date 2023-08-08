@@ -11,10 +11,12 @@
 </head>
 
 <body>
+  <div class="container">
 
+  
   <div class="login-card">
 
-
+    
     <form action = "#" method="post" role="form" th:action="@{/updateUser}" th:object="${user}">
         <div class="login-form__item">
             <input type = "hidden" th:field="*{id}"/>
@@ -52,6 +54,8 @@
         </div>
     
     </form>
+
+</div>
 
 
     <script type="text/javascript">

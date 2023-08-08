@@ -43,12 +43,20 @@ body {
   color: black;
 }
 
-.container,
 .home__container {
-  
   flex-grow: 1;
   justify-content: center;
   overflow: auto; /* Use "auto" to enable scrolling when needed */
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    flex-grow: 1;
+    justify-content: center;
+    overflow: auto; /* Use "auto" to enable scrolling when needed */
 }
 
 .container h2 {
