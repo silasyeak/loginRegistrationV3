@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/").authenticated()
                                 .requestMatchers("/manager").authenticated()
                                 .requestMatchers("/showNewUserForm").permitAll()
+                                .requestMatchers("/showFormForUpdate").permitAll()
                                 .anyRequest().authenticated()
                 ).formLogin(
                         form -> form

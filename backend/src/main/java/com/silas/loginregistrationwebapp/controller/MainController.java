@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
+import com.silas.loginregistrationwebapp.dto.UserDtoNoExceptions;
 import com.silas.loginregistrationwebapp.model.User;
 import com.silas.loginregistrationwebapp.service.UserService;
 
@@ -118,6 +119,13 @@ public class MainController {
         userService.saveUser(userDto);
         return "redirect:/manager";
     	
+    }
+    
+    @PostMapping("/updateUser")
+    public String updateUser(UserDtoNoExceptions userDtoNE) {
+         userService.updateUser(userDtoNE);
+         System.out.println("testing redirect");
+         return "redirect:/manager";
     }
 
 }

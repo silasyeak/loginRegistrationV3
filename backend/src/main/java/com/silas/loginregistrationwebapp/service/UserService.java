@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
 import com.silas.loginregistrationwebapp.dto.UserDtoNoExceptions;
@@ -24,7 +23,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
     
-    @PostMapping("/saveUser")
     public void saveUser(UserDto userDto) {
         User user = new User();
         user.setName(userDto.getName());
@@ -35,9 +33,8 @@ public class UserService {
         userRepository.save(user);
     }
     
-    @PostMapping("/updateUser")
     public String updateUser(UserDtoNoExceptions userDtoNE) {
-    	 User user = new User();
+    	 User user = userRepository.findById(userDtoNE.getId()).get(); //need to find by ID
          user.setName(userDtoNE.getName());
          user.setTelephone(userDtoNE.getTelephone());
          user.setEmail(userDtoNE.getEmail());
