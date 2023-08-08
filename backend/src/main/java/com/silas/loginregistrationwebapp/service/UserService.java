@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.silas.loginregistrationwebapp.dto.UserDto;
 import com.silas.loginregistrationwebapp.dto.UserDtoNoExceptions;
@@ -44,6 +45,12 @@ public class UserService {
          return "redirect:/manager";
     }
 
+
+	public String deleteUserById(long id) {
+		this.userRepository.deleteById(id);
+		return "User: " + id + " deleted.";
+	}
+
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -72,5 +79,9 @@ public class UserService {
     public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
+
+
+
+
 
 }
