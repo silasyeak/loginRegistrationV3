@@ -37,7 +37,7 @@
           <th scope="col">Email</th>
           <th scope="col">Phone</th>
           <th scope="col">Role</th>
-          <th scope ="col">Actions</th>
+          <th scope ="col" colspan="2">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -47,7 +47,12 @@
           <td th:text="${user.telephone}"></td>
           <td th:text="${user.role}"></td>
           <td><a th:href="@{/showFormForUpdate/{id}(id=${user.id})}" class="btn btn-primary">Update</a></td>
-
+          <td>
+            <form th:action="@{/deleteUser/{id}(id=${user.id})}" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </td>
+          
         </tr>  
         
         </tr>

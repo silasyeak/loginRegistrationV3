@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -127,5 +128,14 @@ public class MainController {
          System.out.println("testing redirect");
          return "redirect:/manager";
     }
+    
+    @PostMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable(value = "id") long id) {
+    	this.userService.deleteUserById(id);
+        return "redirect:/manager";
+    }
+
+    
+    
 
 }
