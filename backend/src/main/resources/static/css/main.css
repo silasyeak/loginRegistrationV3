@@ -7,14 +7,11 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  margin: 0; /* Remove padding and set margin to 0 */
+  font-family: "Montserrat", sans-serif;
   background: #eee;
   background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png");
 }
-
 .navbar {
   background-color: white;
   padding: 16px 32px;
@@ -46,12 +43,12 @@ body {
   color: black;
 }
 
-.container {
-  padding: 30px;
-  display: flex;
+.container,
+.home__container {
+  
   flex-grow: 1;
   justify-content: center;
-  overflow: auto;
+  overflow: auto; /* Use "auto" to enable scrolling when needed */
 }
 
 .container h2 {
@@ -130,7 +127,7 @@ body {
 }
 
 .home__container {
-  padding: 30px;
+  
   display: flex;
   flex-grow: 1;
   justify-content: flex-start;
@@ -141,7 +138,7 @@ body {
 
 .horizontal-flex {
   display: flex;
-  width: 70%;
+  width: 100%;
   flex-grow: 1;
   flex-direction: row;
   align-items: stretch;
