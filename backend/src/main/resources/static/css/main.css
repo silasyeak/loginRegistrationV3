@@ -230,3 +230,23 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+
+.grid-container {
+  display: grid;
+  /* Adjust grid-template-columns as needed */
+  height:100%;
+  width: 100%;
+  background-color: white;
+}
+
+.grid-item {
+  background-color: grey;
+  text-align: center;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.carousel-item {
+  height: 700px;
+}
